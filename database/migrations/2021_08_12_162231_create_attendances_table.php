@@ -15,7 +15,8 @@ class CreateAttendancesTable extends Migration
     public function up()
     {
         Schema::create('attendances', function (Blueprint $table) {
-            $table->id('attendance_ID');
+            $table->id();
+            $table->string('attendance_ID');
             $table->string('employee_ID');
             $table->string('employee_Name');
             $table->string('department');
@@ -24,7 +25,7 @@ class CreateAttendancesTable extends Migration
             $table->time('time_Out');
             $table->string('attendance_Status');
             $table->string('signature');
-            $table->string('calendar_ID');
+            $table->string('calendar_ID')->nullable();
             $table->double('total_Hours_Per_Day', 2, 2);
             $table->timestamps();
         });
