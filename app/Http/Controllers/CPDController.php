@@ -14,9 +14,12 @@ class CPDController extends Controller
     
 
      //turn page
-     public function addCPD()
+     public function addCPD($id)
      {
-         return view('career-path-mgmt/addCPD')->with('employees', Employee::all());
+        $employees = Employee::all()->where('id', $id);
+ 
+        return view('career-path-mgmt/addCPD')->with('employees', $employees);
+
      }
  
  
@@ -28,6 +31,7 @@ class CPDController extends Controller
          $addCPD = EmployeeCareerPathInfo::create([    //step 3 bind data
              'employee_CareerPath_Info_ID' => $r-> employee_CareerPath_Info_ID, //add on 
              'employee_ID' => $r->employee_ID, //id
+             'employee_Name' => $r->employee_Name, //id
              'supervisor_Name' => $r->supervisor_Name,
              'current_JobTitle' => $r->current_JobTitle,
              'program_Title' => $r->program_Title,
@@ -42,16 +46,24 @@ class CPDController extends Controller
  
          Session::flash('success', "Add New Employee Career Path Development Succesful!");
  
-         return redirect()->route('viewCDP');
+         return redirect()->route('viewCPD');
      }
  
      //show employee
+     public function show()
+     {
+ 
+         $employees = Employee::paginate(5);
+ 
+         return view('career-path-mgmt/index')->with('employees', $employees);
+     }
+
      public function showCPD()
      {
  
          $cpds = EmployeeCareerPathInfo::paginate(5);
  
-         return view('career-path-mgmt/index')->with('cpds', $cpds);
+         return view('career-path-mgmt/indexCPD')->with('cpds', $cpds);
      }
  
      //find employee to edit
@@ -68,6 +80,8 @@ class CPDController extends Controller
     {
         $cpds = EmployeeCareerPathInfo::find($id);
         $cpds->delete();
+
+        Session::flash('delete', "Deleted Succesful!");
         return redirect()->route('viewCPD');
     }
  
@@ -89,7 +103,7 @@ class CPDController extends Controller
          $cpds->scheduled_Date_Completed = $r->scheduled_Date_Completed;
          $cpds->save(); //run the SQL update statment
          Session::flash('update', "Updated Succesful!");
-         return redirect()->route('viewCDP');
+         return redirect()->route('viewCPD');
      }
  
      //search employee
@@ -98,11 +112,33 @@ class CPDController extends Controller
          $request = request();
          $keyword = $request->search;
          $cpds = DB::table('employee_career_path_infos')
-         ->leftjoin('employees', 'employees.id', '=', 'cpds.employee_ID')
-         ->select('employees.employee_Name as empName', 'employees.id as empID', 'cdps.*')
          ->where('employee_CareerPath_Info_ID', 'like', '%' .$keyword. '%')
+         ->orWhere('employee_ID', 'like', '%' .$keyword. '%')
          ->paginate(5);
  
-         return view('career-path-mgmt/search')->with('cpds', $cpds);
+         return view('career-path-mgmt/searchCPD')->with('cpds', $cpds);
      }
+
+     function search()
+     {
+         $request = request();
+         $keyword = $request->search;
+         $employees = DB::table('employees')
+         ->where('employee_ID', 'like', '%' .$keyword. '%')
+         ->orWhere('department', 'like', '%' .$keyword. '%')
+         ->paginate(5);
+ 
+         return view('career-path-mgmt/search')->with('employees', $employees);
+     }
+
+
+     public function showCPDDetail($id)
+     {
+ 
+         $cpds = EmployeeCareerPathInfo::all()->where('id', $id);
+         //select * from products where id='$id'
+ 
+         return view('career-path-mgmt/profileCPD')->with('cpds', $cpds);
+     }
+ 
 }

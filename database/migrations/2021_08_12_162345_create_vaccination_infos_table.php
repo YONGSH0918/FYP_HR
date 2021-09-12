@@ -17,9 +17,10 @@ class CreateVaccinationInfosTable extends Migration
             $table->id();
             $table->string('employee_Vaccination_ID');
             $table->string('employee_ID');
-            $table->integer('employee_IC')->unsigned();
+            $table->string('employee_IC');
             $table->string('employee_Name');
             $table->string('vaccine_Type');
+            $table->string('health_Facility');
             $table->text('vaccination_Location');
             $table->dateTime('vaccination_DateTime');
             $table->string('vaccination_Status');

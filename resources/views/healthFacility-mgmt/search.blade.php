@@ -1,4 +1,4 @@
-@extends('career-path-mgmt.base')
+@extends('healthFacility-mgmt.base')
 @section('action-content')
 
 <!-- Main content -->
@@ -7,10 +7,10 @@
     <div class="box-header">
       <div class="row">
         <div class="col-sm-8">
-          <h5 class="box-title">List of employees</h5>
+          <h5 class="box-title">List of Health Facility</h5>
         </div>
         <div class="col-sm-4" style="text-align: -webkit-right;">
-          <a class="btn btn-primary" style="font-size: small;" href="{{ route('viewEmployeeCPD') }}">Back</a>
+          <a class="btn btn-primary" style="font-size: small;" href="{{ route('insertHealthFacility') }}">Add New Health Facility</a>
         </div>
       </div>
     </div>
@@ -28,24 +28,23 @@
           <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
             <thead>
               <tr role="row">
-                <th width="9%" class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Id: activate to sort column descending" aria-sort="ascending">Employee ID</th>
-                <th width="12%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending">Employee Name</th>
-                <th width="12%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="department: activate to sort column ascending">Department</th>
-                <th width="8%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="jobtitle: activate to sort column ascending">Job Title</th>
+                <th width="20%" class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Id: activate to sort column descending" aria-sort="ascending">Name</th>
+                <th width="40%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending">Address</th>
                 <th tabindex="0" aria-controls="example2" rowspan="1" colspan="2" aria-label="Action: activate to sort column ascending">Action</th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($employees as $employee)
+              @foreach ($hfs as $hf)
               <tr role="row" class="odd">
-                <td class="sorting_1">{{ $employee->employee_ID }}</td>
-                <td class="hidden-xs">{{ $employee->employee_Name }}</td>
-                <td class="hidden-xs">{{ $employee->department }}</td>
-                <td class="hidden-xs">{{ $employee->jobtitle }}</td>
+                <td class="sorting_1">{{ $hf->name }}</td>
+                <td class="hidden-xs">{{ $hf->address }}</td>
                 <td>
-                  <a href="{{ route('addCPD', ['id' => $employee->id]) }}" class="btn btn-warning col-sm-3 col-xs-5 btn-margin">
-                    <i class="fa fa-plus"></i>
+                  <a href="{{ route('editHealthFacility', ['id' => $hf->id]) }}" class="btn btn-warning col-sm-3 col-xs-5 btn-margin">
+                    <i class="fa fa-edit"></i>
                   </a>
+                  <a href="{{ route('deleteHealthFacility', ['id' => $hf->id]) }}" class="btn btn-danger" onclick="return confirm('Sure Want Delete?')">
+                      <i class="fa fa-trash"></i>
+                    </a>
                 </td>
               </tr>
               @endforeach
@@ -56,11 +55,14 @@
       <div class="box-footer" style="width: -webkit-fill-available;">
         <div class="row">
           <div class="col-sm-8">
-            <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to {{count($employees)}} of {{count($employees)}} entries</div>
+            <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to {{count($hfs)}} of {{count($hfs)}} entries</div>
           </div>
           <div class="col-sm-7">
             <nav class=".pagination-circle" id="example2_paginate">
-              {{ $employees->links() }}
+              {{ $hfs->links() }}
+          </div>
+          <div class="col-sm-5" style="text-align: -webkit-right;">
+            <a class="btn btn-primary" style="font-size: small;" href="{{ route('viewHealthFacility') }}">Back</a>
           </div>
         </div>
       </div>

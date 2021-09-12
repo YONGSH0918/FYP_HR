@@ -35,6 +35,14 @@
                     <h4 class="title">{{$employee->employee_Name}}</h4>
                     <table style="width: 100%" class="profile-tbl">
                         <tbody style="font-size: 14px;">
+                        <tr>
+                                <td>
+                                    <div>{{ __('IC No.') }}</div>
+                                </td>
+                                <td>
+                                    <div>{{$employee->ic}}</div>
+                                </td>
+                            </tr>
                             <tr>
                                 <td>
                                     <div>{{ __('Email') }}</div>

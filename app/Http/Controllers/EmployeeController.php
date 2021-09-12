@@ -149,6 +149,7 @@ class EmployeeController extends Controller
         $keyword = $request->search;
         $employees = DB::table('employees')
         ->where('employee_ID', 'like', '%' .$keyword. '%')
+        ->orWhere('department', 'like', '%' .$keyword. '%')
         ->paginate(5);
 
         return view('employees-mgmt/search')->with('employees', $employees);
