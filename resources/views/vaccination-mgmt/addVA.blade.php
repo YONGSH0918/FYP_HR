@@ -12,7 +12,7 @@
                     </a>
                 </div>
                 <div class="panel-body">
-                    <form name="formAddVA" class="form-horizontal" role="form" method="POST" action="{{ route('addVA') }}" enctype="multipart/form-data" onSubmit="return formValidation();">
+                    <form name="formAddVA" class="form-horizontal" role="form" method="POST" action="{{ route('addVA') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
                         <!--VA ID -->
@@ -57,6 +57,7 @@
                             <label for="vaccine_Type" class="col-md-4 control-label">Vaccine Name<span style="color:red">*</span></label>
                             <div class="col-md-6">
                                 <select id="vaccine_Type" name="vaccine_Type" style="width: -webkit-fill-available;" onchange="if (this.value=='Others'){this.form['Others'].style.visibility='visible'} else {this.form['Others'].style.visibility='hidden'};">
+                                    <option value="0" disabled="true" selected="true">Please Select</option>
                                     <option value="Pfizer - BioNTech">Pfizer - BioNTech</option>
                                     <option value="Sinovac - Coronavac">Sinovac - Coronavac</option>
                                     <option value="AstraZeneca">AstraZeneca</option>
@@ -71,7 +72,8 @@
                             <label for="health_Facility" class="col-md-4 control-label">Health Facility<span style="color:red">*</span></label>
                             <div class="col-md-6">
                                 <select name="health_Facility" id="health_Facility" class="form-control healthFacility">
-                                    @foreach($healthFacility as $hf)
+                                    <option value="0" disabled="true" selected="true">Please Select</option>
+                                    @foreach($hfs as $hf)
                                     <option value="{{ $hf->id }}">{{ $hf->name }}</option>
                                     @endforeach
                                 </select>
@@ -81,14 +83,21 @@
                         <div class="form-group">
                             <label for="vaccination_Location" class="col-md-4 control-label">Vaccination Location<span style="color:red">*</span></label>
                             <div class="col-md-6">
-                                <textarea id="vaccination_Location" name="vaccination_Location" class="healthFacilityAddress" style="width: -webkit-fill-available;" readonly></textarea>
+                                <input type="text" name="vaccination_Location" class="healthFacilityAddress" style="width: -webkit-fill-available;" readonly>
                             </div>
                         </div>
-                        <!--Date Time-->
+                        <!--Date-->
                         <div class="form-group">
-                            <label for="vaccination_DateTime" class="col-md-4 control-label">Date Time<span style="color:red">*</span></label>
+                            <label for="vaccination_Date" class="col-md-4 control-label">Date<span style="color:red">*</span></label>
                             <div class="col-md-6">
-                                <input type="datetime-local" id="vaccination_DateTime" name="vaccination_DateTime" style="width: -webkit-fill-available;" required>
+                                <input type="date" id="vaccination_Date" name="vaccination_Date" style="width: -webkit-fill-available;" required>
+                            </div>
+                        </div>
+                        <!--Time-->
+                        <div class="form-group">
+                            <label for="vaccination_Time" class="col-md-4 control-label">Time<span style="color:red">*</span></label>
+                            <div class="col-md-6">
+                                <input type="time" id="vaccination_Time" name="vaccination_Time" style="width: -webkit-fill-available;" required>
                             </div>
                         </div>
                         <!--Status-->
@@ -96,8 +105,9 @@
                             <label for="vaccination_Status" class="col-md-4 control-label">Status<span style="color:red">*</span></label>
                             <div class="col-md-6">
                                 <select id="vaccination_Status" name="vaccination_Status" style="width: -webkit-fill-available;" onchange="if (this.value=='others'){this.form['others'].style.visibility='visible'}else {this.form['others'].style.visibility='hidden'};">
-                                    <option value="Vaccinated">Vaccinated</option>
+                                    <option value="0" disabled="true" selected="true">Please Select</option>
                                     <option value="Unvaccinated">Unvaccinated</option>
+                                    <option value="Vaccinated">Vaccinated</option>
                                     <option value="others">Others</option>
                                 </select>
                                 <input type="text" name="others" id="vaccination_Status" style="visibility:hidden; width: -webkit-fill-available;" />
@@ -128,7 +138,9 @@
             var hf_id = $(this).val();
             //console.log(hf_id);
 
+
             var a = $(this).parent();
+
             console.log(hf_id);
             var op = "";
 
@@ -144,7 +156,7 @@
                     console.log(data.address);
 
                     a.find('.healthFacilityAddress').val(data.address);
-
+                    $('.healthFacilityAddress').val(data.address);
                 },
 
                 error: function() {

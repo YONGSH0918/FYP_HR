@@ -25,9 +25,9 @@
             <div class="box box-success" style="padding: 20px; background-color: whitesmoke; border-radius: 10px;">
                 <div class="box-body employee-info">
                     <div class="author" style="text-align: center;">
-                    
+
                         <img class="border-white" src="{{ asset('images/vaccination.jpg') }}" width="320px" height="250px" style="border-radius: 5px;" alt="profile photo" />
-    
+
                     </div>
                     <p class="description text-center">
                     <h4 class="title">{{$va->employee_Name}}</h4>
@@ -88,10 +88,18 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <p>{{ __('Date Time') }}</p>
+                                    <p>{{ __('Date') }}</p>
                                 </td>
                                 <td>
-                                    <p>{{$va->vaccination_DateTime}}</p>
+                                    <p>{{$va->vaccination_Date}}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>{{ __('Time') }}</p>
+                                </td>
+                                <td>
+                                    <p>{{$va->vaccination_Time}}</p>
                                 </td>
                             </tr>
                             <tr>

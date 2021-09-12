@@ -7,12 +7,12 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading" style="font-size: larger; color: mediumblue; font-weight: 500;">Edit Career Path Development Information
-                <a href="{{ route('viewCPD') }}" class="float-right btn btn-info col-sm-3 col-xs-5 btn-margin" style="font-size: initial; width: 110px;">
-                    <i></i>{{ __('Back') }}
-                </a>
+                    <a href="{{ route('viewCPD') }}" class="float-right btn btn-info col-sm-3 col-xs-5 btn-margin" style="font-size: initial; width: 110px;">
+                        <i></i>{{ __('Back') }}
+                    </a>
                 </div>
                 <div class="panel-body">
-                    <form name="formEditCPD" class="form-horizontal" role="form" method="POST" action="{{ route('updateCPD') }}" enctype="multipart/form-data" onSubmit="return formValidation();">
+                    <form name="formEditCPD" class="form-horizontal" role="form" method="POST" action="{{ route('updateCPD') }}" enctype="multipart/form-data">
                         @csrf
                         @foreach($cpds as $cpd)
                         <input type="hidden" name="ID" id="ID" value="{{$cpd->id}}" style="width: -webkit-fill-available;">
@@ -93,14 +93,14 @@
                                 <input type="datetime-local" id="scheduled_Date_Completed" name="scheduled_Date_Completed" value="{{$cpd->scheduled_Date_Completed}}" style="width: -webkit-fill-available;">
                             </div>
                         </div>
-                            @endforeach
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" name="edit" class="btn btn-primary" onclick="return confirm('Sure Want To Edit?')">
-                                        Update
-                                    </button>
-                                </div>
+                        @endforeach
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" name="edit" class="btn btn-primary" onclick="return confirm('Are you sure you want to edit this item??')">
+                                    Update
+                                </button>
                             </div>
+                        </div>
                     </form>
                 </div>
             </div>

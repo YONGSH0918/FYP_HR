@@ -43,7 +43,7 @@
                 <td class="hidden-xs">{{ $employee->department }}</td>
                 <td class="hidden-xs">{{ $employee->jobtitle }}</td>
                 <td>
-                  <a href="{{ route('addCPD', ['id' => $employee->id]) }}" class="btn btn-warning col-sm-3 col-xs-5 btn-margin">
+                  <a href="{{ route('addCPD', ['id' => $employee->id]) }}" class="btn btn-success col-sm-3 col-xs-5 btn-margin">
                     <i class="fa fa-plus"></i>
                   </a>
                 </td>

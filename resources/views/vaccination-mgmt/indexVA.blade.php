@@ -53,7 +53,7 @@
                   <th width="12%" class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Id: activate to sort column descending" aria-sort="ascending">Vaccination Appointment ID</th>
                   <th width="12%" class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Id: activate to sort column descending" aria-sort="ascending">Employee ID</th>
                   <th width="25%" class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Id: activate to sort column descending" aria-sort="ascending">Employee Name</th>
-                  <th width="15%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending">Date Time</th>
+                  <th width="15%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending">Date</th>
                   <th width="15%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="DateofBirth: activate to sort column ascending">Status</th>
                   <th tabindex="0" aria-controls="example2" rowspan="1" colspan="2" aria-label="Action: activate to sort column ascending">Action</th>
                 </tr>
@@ -64,18 +64,16 @@
                   <td class="sorting_1">{{ $va->employee_Vaccination_ID }}</td>
                   <td class="hidden-xs">{{ $va->employee_ID }}</td>
                   <td class="hidden-xs">{{ $va->employee_Name }}</td>
-                  <td class="hidden-xs">{{ $va->vaccination_DateTime }}</td>
+                  <td class="hidden-xs">{{ $va->vaccination_Date}}</td>
                   <td class="hidden-xs">{{ $va->vaccination_Status}}</td>
                   <td>
                     <a href="{{ route('va.detail', ['id' => $va->id]) }}" class="btn btn-info col-sm-3 col-xs-5 btn-margin">
                       <i class="fa fa-search"></i>
                     </a>
-                    <!-- route('cpd.detail', ['id' => $cpd->id])-->
-                    <!--('editEmployee', ['employee_ID' => $employee->employee_ID])-->
                     <a href="{{ route('editVA', ['id' => $va->id]) }}" class="btn btn-warning col-sm-3 col-xs-5 btn-margin">
                       <i class="fa fa-edit"></i>
                     </a>
-                    <a href="{{ route('deleteVA', ['id' => $va->id]) }}" class="btn btn-danger" onclick="return confirm('Sure Want Delete?')">
+                    <a href="{{ route('deleteVA', ['id' => $va->id]) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?')">
                       <i class="fa fa-trash"></i>
                     </a>
                   </td>

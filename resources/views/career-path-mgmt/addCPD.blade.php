@@ -12,9 +12,9 @@
                     </a>
                 </div>
                 <div class="panel-body">
-                    <form name="formAddCPD" class="form-horizontal" role="form" method="POST" action="{{ route('addCPD') }}" enctype="multipart/form-data" onSubmit="return formValidation();">
+                    <form name="formAddCPD" class="form-horizontal" role="form" method="POST" action="{{ route('addCPD') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
-        
+
                         <!--CPD ID -->
                         <div class="form-group">
                             <label for="employee_CareerPath_Info_ID" class="col-md-4 control-label">CPD ID<span style="color:red">*</span></label>
@@ -36,8 +36,8 @@
                         <div class="form-group">
                             <label for="employee_Name" class="col-md-4 control-label">Employee Name<span style="color:red">*</span></label>
                             <div class="col-md-6">
-                            @foreach($employees as $employee)
-                            <input type="hidden" name="ID" id="ID" value="{{$employee->id}}" style="width: -webkit-fill-available;">
+                                @foreach($employees as $employee)
+                                <input type="hidden" name="ID" id="ID" value="{{$employee->id}}" style="width: -webkit-fill-available;">
                                 <input type="text" name="employee_Name" id="employee_Name" value="{{$employee->employee_Name}}" style="width: -webkit-fill-available;" readonly>
                                 @endforeach
                             </div>
@@ -53,8 +53,8 @@
                         <div class="form-group">
                             <label for="current_JobTitle" class="col-md-4 control-label">Current Job Title<span style="color:red">*</span></label>
                             <div class="col-md-6">
-                               @foreach($employees as $employee)
-                               <input type="hidden" name="ID" id="ID" value="{{$employee->id}}" style="width: -webkit-fill-available;">
+                                @foreach($employees as $employee)
+                                <input type="hidden" name="ID" id="ID" value="{{$employee->id}}" style="width: -webkit-fill-available;">
                                 <input type="text" id="current_JobTitle" name="current_JobTitle" value="{{$employee->jobtitle}}" style="width: -webkit-fill-available;" readonly>
                                 @endforeach
                             </div>

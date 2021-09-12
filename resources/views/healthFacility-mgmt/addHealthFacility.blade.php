@@ -12,7 +12,7 @@
                     </a>
                 </div>
                 <div class="panel-body">
-                    <form name="formAddHealthFacility" class="form-horizontal" role="form" method="POST" action="{{ route('addHealthFacility') }}" enctype="multipart/form-data" onSubmit="return formValidation();">
+                    <form name="formAddHealthFacility" class="form-horizontal" role="form" method="POST" action="{{ route('addHealthFacility') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <!--Employee ID -->
                         <div class="form-group">

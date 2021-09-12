@@ -50,7 +50,7 @@
                     <a href="{{ route('editCPD', ['id' => $cpd->id]) }}" class="btn btn-warning col-sm-3 col-xs-5 btn-margin">
                       <i class="fa fa-edit"></i>
                     </a>
-                    <a href="{{ route('deleteCPD', ['id' => $cpd->id]) }}" class="btn btn-danger" onclick="return confirm('Sure Want Delete?')">
+                    <a href="{{ route('deleteCPD', ['id' => $cpd->id]) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?')">
                       <i class="fa fa-trash"></i>
                     </a>
                   </td>

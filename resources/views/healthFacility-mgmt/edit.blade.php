@@ -12,7 +12,7 @@
                     </a>
                 </div>
                 <div class="panel-body">
-                    <form name="formEditHealthFacility" class="form-horizontal" role="form" method="POST" action="{{ route('updateHealthFacility') }}" enctype="multipart/form-data" onSubmit="return formValidation();">
+                    <form name="formEditHealthFacility" class="form-horizontal" role="form" method="POST" action="{{ route('updateHealthFacility') }}" enctype="multipart/form-data">
                         @csrf
                         @foreach($hfs as $hf)
                         <input type="hidden" name="ID" id="ID" value="{{$hf->id}}" style="width: -webkit-fill-available;">
@@ -33,7 +33,7 @@
                         @endforeach
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" name="edit" class="btn btn-primary" onclick="return confirm('Sure Want To Edit?')">
+                                <button type="submit" name="edit" class="btn btn-primary" onclick="return confirm('Are you sure you want to edit this item?')">
                                     Update
                                 </button>
                             </div>

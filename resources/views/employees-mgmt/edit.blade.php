@@ -7,12 +7,12 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading" style="font-size: larger; color: mediumblue; font-weight: 500;">Edit employee
-                <a href="{{ route('viewEmployee') }}" class="float-right btn btn-info col-sm-3 col-xs-5 btn-margin" style="font-size: initial; width: 110px;">
-                    <i></i>{{ __('Back') }}
-                </a>
+                    <a href="{{ route('viewEmployee') }}" class="float-right btn btn-info col-sm-3 col-xs-5 btn-margin" style="font-size: initial; width: 110px;">
+                        <i></i>{{ __('Back') }}
+                    </a>
                 </div>
                 <div class="panel-body">
-                    <form name="formEditEmployee" class="form-horizontal" role="form" method="POST" action="{{ route('updateEmployee') }}" enctype="multipart/form-data" onSubmit="return formValidation();">
+                    <form name="formEditEmployee" class="form-horizontal" role="form" method="POST" action="{{ route('updateEmployee') }}" enctype="multipart/form-data">
                         @csrf
                         @foreach($employees as $employee)
                         <input type="hidden" name="ID" id="ID" value="{{$employee->id}}" style="width: -webkit-fill-available;">
@@ -73,6 +73,7 @@
                             <label for="race" class="col-md-4 control-label">Race<span style="color:red">*</span></label>
                             <div class="col-md-6">
                                 <select id="race" name="race" style="width: -webkit-fill-available;" onchange="if (this.value=='Others'){this.form['Others'].style.visibility='visible'}else {this.form['Others'].style.visibility='hidden'};">
+                                    <option value="0" disabled="true" selected="true">Please Select</option>
                                     <option value="Malay" @if($employee->race == "Malay") selected @endif>Malay</option>
                                     <option value="Chinese" @if($employee->race == "Chinese") selected @endif>Chinese</option>
                                     <option value="Indian" @if($employee->race == "Indian") selected @endif>Indian</option>
@@ -238,7 +239,7 @@
                             @endforeach
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" name="edit" class="btn btn-primary" onclick="return confirm('Sure Want To Edit?')">
+                                    <button type="submit" name="edit" class="btn btn-primary" onclick="return confirm('Are you sure you want to edit this item?')">
                                         Update
                                     </button>
                                 </div>

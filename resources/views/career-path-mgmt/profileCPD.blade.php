@@ -25,9 +25,9 @@
             <div class="box box-success" style="padding: 20px; background-color: whitesmoke; border-radius: 10px;">
                 <div class="box-body employee-info">
                     <div class="author" style="text-align: center;">
-                    
-                        <img class="border-white" src="{{ asset('images/careerpath.png') }}" width="320px" height="250px" style="border-radius: 5px;" alt="profile photo" />
-    
+
+                        <img class="border-white" src="{{ asset('images/careerpath.png') }}" width="300px" height="250px" style="border-radius: 5px;" alt="profile photo" />
+
                     </div>
                     <p class="description text-center">
                     <h4 class="title">{{$cpd->employee_Name}}</h4>

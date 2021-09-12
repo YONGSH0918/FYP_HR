@@ -24,7 +24,7 @@
         <div style="margin-bottom: 10px;">
           <form method="POST" action="{{ route('searchHealthFacility') }}">
             @csrf
-            <input type="text" id="search" name="search" placeholder="Search Health Facility Name" style="width: 250px;">
+            <input type="text" id="search" name="search" placeholder="Search ID or Health Facility Name" style="width: 250px;">
             <button type="submit" class="btn btn-primary">
               <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
               Search
@@ -47,7 +47,7 @@
           <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
             <thead>
               <tr role="row">
-              <th width="5%" class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Id: activate to sort column descending" aria-sort="ascending">ID</th>
+                <th width="5%" class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Id: activate to sort column descending" aria-sort="ascending">ID</th>
                 <th width="20%" class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Id: activate to sort column descending" aria-sort="ascending">Name</th>
                 <th width="40%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending">Address</th>
                 <th tabindex="0" aria-controls="example2" rowspan="1" colspan="2" aria-label="Action: activate to sort column ascending">Action</th>
@@ -56,14 +56,14 @@
             <tbody>
               @foreach ($hfs as $hf)
               <tr role="row" class="odd">
-              <td class="sorting_1">{{ $hf->id }}</td>
+                <td class="sorting_1">{{ $hf->id }}</td>
                 <td class="sorting_1">{{ $hf->name }}</td>
                 <td class="hidden-xs">{{ $hf->address }}</td>
                 <td>
                   <a href="{{ route('editHealthFacility', ['id' => $hf->id]) }}" class="btn btn-warning col-sm-3 col-xs-5 btn-margin">
                     <i class="fa fa-edit"></i>
                   </a>
-                  <a href="{{ route('deleteHealthFacility', ['id' => $hf->id]) }}" class="btn btn-danger" onclick="return confirm('Sure Want Delete?')">
+                  <a href="{{ route('deleteHealthFacility', ['id' => $hf->id]) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?')">
                     <i class="fa fa-trash"></i>
                   </a>
                 </td>

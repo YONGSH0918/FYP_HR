@@ -22,7 +22,8 @@ class CreateVaccinationInfosTable extends Migration
             $table->string('vaccine_Type');
             $table->string('health_Facility');
             $table->text('vaccination_Location');
-            $table->dateTime('vaccination_DateTime');
+            $table->date('vaccination_Date');
+            $table->time('vaccination_Time');
             $table->string('vaccination_Status');
             $table->timestamps();
         });

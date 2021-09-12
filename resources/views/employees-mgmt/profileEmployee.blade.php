@@ -35,7 +35,7 @@
                     <h4 class="title">{{$employee->employee_Name}}</h4>
                     <table style="width: 100%" class="profile-tbl">
                         <tbody style="font-size: 14px;">
-                        <tr>
+                            <tr>
                                 <td>
                                     <div>{{ __('IC No.') }}</div>
                                 </td>
